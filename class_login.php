@@ -20,6 +20,7 @@ class class_login
             throw new Exception('Bad Datas');
         }
     }
+
     public function SaveData($email, $password)
     {
         $file = fopen('login.txt', 'w');
@@ -27,6 +28,8 @@ class class_login
         fwrite($file, '\n' . $email . ' ' . $password);
         fclose($file);
     }
+
+    //for admin
     function getRole($email, $password)
     {
         if ($email === "marco.pacchiotti.2002@gmail.com" and $password === "adminSuperFigo69420") {
