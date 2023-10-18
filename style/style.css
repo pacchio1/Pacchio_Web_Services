@@ -1,6 +1,11 @@
 /* Set the background color to a light blue */
 body {
-    background-color: #0e3267;
+    background-color: #273345;
+}
+
+header,
+footer {
+    background-color: #022350;
 }
 
 /* Set the font family to Amazon Ember */
@@ -37,7 +42,7 @@ img {
 a {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #1a73e8;
+    background-color: #f6ff00;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
@@ -48,6 +53,7 @@ a:hover {
     background-color: #0f4fb6;
 }
 
-button {
-    background-color: yellow;
+.warning {
+    color: red;
+    font-weight: bold;
 }
