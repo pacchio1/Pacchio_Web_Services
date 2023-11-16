@@ -1,6 +1,7 @@
 /* Set the background color to a light blue */
 body {
     background-color: #273345;
+
 }
 
 header,
@@ -47,6 +48,7 @@ a {
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s ease;
+    color: black;
 }
 
 a:hover {
