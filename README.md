@@ -4,7 +4,7 @@ Pacchio Web Services
 ![pws](pwsLogo.png)
 
 - **Password Database (KeepassXC):**
-  - [Per salvare password online (non da docker)]
+  - [Per salvare password online]
 
 - **NAS:**
   - [Next Cloud X storage]
@@ -19,10 +19,13 @@ Pacchio Web Services
   - [firewall e router open-source] -->
 
 - **VPN:**
-  - [creazione di una vpn con openvpn e pivpn (non da docker)]
+  - [creazione di una vpn con openvpn e pivpn]
 
 - **Certbot:**
   - [certbot per certificato ssh]
 
 - **Web Server:**
-  - [Nginx]
+  - [Apache]
+
+- **DB**
+  - [Maria db]
