@@ -3,6 +3,7 @@ version: '3'
 services:
   nextcloud:
     image: 'nextcloud:latest'
+    restart: always
     ports:
       - '4321:80'
     volumes:
@@ -32,8 +33,10 @@ services:
     cap_add:
       - NET_ADMIN
 
+
   uptimekuma:
     image: elestio/uptime-kuma:latest
+    restart: always
     ports:
       - '3001:3001'
     environment:
@@ -47,9 +50,11 @@ services:
     command: 'certonly --webroot --webroot-path=/var/www/html --email'
     volumes:
       - '/etc/letsencrypt:/etc/letsencrypt'
+    restart: always
 
   apache2:
     image: 'httpd:2.4'
+    restart: always
     ports:
       - '80:80'
       - '443:443'
@@ -64,9 +69,11 @@ services:
   #     - '/mnt/postgresql:/var/lib/postgresql/data'
   #   ports:
   #     - '5432:5432'
+  #   restart: always
 
   # mysql:
   #   image: 'mysql:latest'
+  #   restart: always
   #   ports:
   #     - '3306:3306'
 
@@ -77,6 +84,7 @@ services:
       - '/vpn/vpn.sh:/vpn'
     ports:
       - '11948:11948'
+    restart: always
 
 volumes:
   nextcloud:
@@ -87,4 +95,3 @@ volumes:
   postgresql:
   mysql:
   vpn:
-
