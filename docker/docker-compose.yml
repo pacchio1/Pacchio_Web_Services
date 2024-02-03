@@ -77,14 +77,14 @@ services:
   #   ports:
   #     - '3306:3306'
 
-  vpn:
-    image: 'debian:latest'
-    command: 'tail -f /dev/null'
-    volumes:
-      - '/vpn/vpn.sh:/vpn'
-    ports:
-      - '11948:11948'
-    restart: always
+  # vpn:
+  #   image: 'debian:latest'
+  #   command: 'tail -f /dev/null'
+  #   volumes:
+  #     - '/vpn/vpn.sh:/vpn'
+  #   ports:
+  #     - '11948:11948'
+  #   restart: always
 
 volumes:
   nextcloud:
@@ -92,6 +92,6 @@ volumes:
   uptimekuma:
   certbot:
   apache2:
-  postgresql:
-  mysql:
-  vpn:
+  # postgresql:
+  # mysql:
+  # vpn:
