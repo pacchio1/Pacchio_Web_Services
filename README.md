@@ -28,4 +28,4 @@ Pacchio Web Services
   - [Apache]
 
 - **DB**
-  - [Maria db]
+  - [PostgreSQL]

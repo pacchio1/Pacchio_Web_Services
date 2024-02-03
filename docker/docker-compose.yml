@@ -26,8 +26,6 @@ services:
       - 'PGID=1000'
       - 'PORT=3000'
 
-
-
   certbot:
     image: 'certbot/certbot'
     command: 'certonly --webroot --webroot-path=/var/www/html --email'
