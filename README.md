@@ -6,13 +6,13 @@ Pacchio Web Services
 - **Password Database (KeepassXC):**
   - [Per salvare password online]
 
-- **NAS:**
+- **NAS:** -> 4321
   - [Next Cloud X storage]
 
-- **PiHole:**
+- **PiHole:** -> 5555
   - [To remove ads]
 
-- **UpTimeKuma:**
+- **UpTimeKuma:** -> 3001
   - [For monitoring servers]
 
 <!-- - **pfSense:**
@@ -24,8 +24,9 @@ Pacchio Web Services
 - **Certbot:**
   - [certbot per certificato ssh]
 
-- **Web Server:**
+- **Web Server:** -> 80
   - [Apache]
 
-- **DB**
+- **DB** ->postgresql :5432 mysql -> 3306
   - [PostgreSQL]
+

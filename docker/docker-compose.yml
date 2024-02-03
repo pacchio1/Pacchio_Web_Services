@@ -4,23 +4,43 @@ services:
   nextcloud:
     image: 'nextcloud:latest'
     ports:
-      - '8080:80'
-      - '443:443'
+      - '4321:80'
     volumes:
       - '/mnt/nextcloud:/var/www/html'
 
-
   pihole:
-    image: 'pihole/pihole'
+    image: pihole/pihole
+    container_name: pihole
+    restart: always
     environment:
-      - 'TZ=Europe/London'
-      - 'WEBPASSWORD=yourpassword'
-      - 'DNS1=8.8.8.8'
+      - TZ=Europe/Rome
+      - ServerIP=localhost #ip da cui si configura il pihole
+      - WEBPASSWORD=piholedocker
+      - DNS1=8.8.8.8  # Google DNS
+      - DNS2=8.8.4.4  # Google DNS
+    dns:
+      - 127.0.0.1
+      - solidyellow.ddns.net
+    dns_search: # Optional, you can omit this line
+      - local
+    ports:
+      # - "53:53/tcp"
+      # - "53:53/udp"
+      # - "67:67/udp"
+      - "5555:80"
+      # - "555:443"
+    cap_add:
+      - NET_ADMIN
 
   uptimekuma:
-    image: 'debian:latest'
-    expose:
-      - '3000'
+    image: elestio/uptime-kuma:latest
+    ports:
+      - '3001:3001'
+    environment:
+      - ServerIP=localhost
+      - TZ=Europe/Rome
+    volumes:
+      - '/mnt/uptimekuma:/app/db'
 
   certbot:
     image: 'certbot/certbot'
@@ -33,3 +53,23 @@ services:
     ports:
       - '80:80'
       - '443:443'
+
+  # postgresql:
+  #   image: 'postgres:latest'
+  #   environment:
+  #     - POSTGRES_USER=myuser
+  #     - POSTGRES_PASSWORD=mypassword
+  #     - POSTGRES_DB=mydatabase
+  #   volumes:
+  #     - '/mnt/postgresql:/var/lib/postgresql/data'
+  #   ports:
+  #     - '5432:5432'
+
+  # mysql:
+  #   image: 'mysql:latest'
+  #   ports:
+  #     - '3306:3306'
+
+  vpn:
+    image: 'debian:latest'
+    command: 'tail -f /dev/null'
