@@ -4,7 +4,6 @@ lunghezza = int(input("L:"))
 n_password = int(input("numero pswd"))
 tipo = int(input("1 solo lettere:,2 letere e numeri:,3 lettere numeri e simboli"))
 
-
 def minuscole():
     return random.randint(97, 122)
 
@@ -25,7 +24,6 @@ sim = "$£%&?!*@-"
 i = 0
 passwds = []
 passwd = ""
-
 
 def caso(tipo):
     gen = 0
