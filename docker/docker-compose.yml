@@ -6,7 +6,7 @@ services:
     ports:
       - '4321:80'
     volumes:
-      - '/mnt/nextcloud:/var/www/html'
+      - '/nextcloud:/var/www/html'
 
   pihole:
     image: pihole/pihole
@@ -72,6 +72,19 @@ services:
 
   vpn:
     image: 'debian:latest'
-    command: 'cd vpn && chmod +x ./vpn.sh && tail -f /dev/null'
+    command: 'tail -f /dev/null'
     volumes:
-      - '/mnt/vpn:/vpn'
+      - '/vpn/vpn.sh:/vpn'
+    ports:
+      - '11948:11948'
+
+volumes:
+  nextcloud:
+  pihole:
+  uptimekuma:
+  certbot:
+  apache2:
+  postgresql:
+  mysql:
+  vpn:
+
