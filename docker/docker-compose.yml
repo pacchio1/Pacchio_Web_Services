@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  nextcloud:
+    image: nextcloud
+    container_name: nextcloud
+    restart: always
+
+  pihole:
+    image: pihole/pihole
+    container_name: pihole
+    restart: always
+    environment:
+      - TZ=Europe/Rome
+      - ServerIP=your_server_ip
+      - WEBPASSWORD=piholedocker
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "4322:80"
+      - "4321:443"
+    cap_add:
+      - NET_ADMIN
+
+  uptimekuma:
+    image: louislam/uptime-kuma
+    container_name: uptimekuma
+    restart: always
+    ports:
+      - "3000:3000"
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    restart: always
+
+  apache2:
+    image: httpd
+    container_name: apache2
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
