@@ -17,14 +17,10 @@ services:
       - 'WEBPASSWORD=yourpassword'
       - 'DNS1=8.8.8.8'
 
-
   uptimekuma:
-    image: 'linuxserver/uptimekuma'
-    environment:
-      - 'TZ=Europe/London'
-      - 'PUID=1000'
-      - 'PGID=1000'
-      - 'PORT=3000'
+    image: 'debian:latest'
+    expose:
+      - '3000'
 
   certbot:
     image: 'certbot/certbot'
