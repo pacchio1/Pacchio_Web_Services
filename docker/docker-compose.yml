@@ -80,8 +80,6 @@ services:
   # vpn:
   #   image: 'debian:latest'
   #   command: 'tail -f /dev/null'
-  #   volumes:
-  #     - '/vpn/vpn.sh:/vpn'
   #   ports:
   #     - '11948:11948'
   #   restart: always
