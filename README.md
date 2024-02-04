@@ -34,4 +34,10 @@ Pacchio Web Services
   - [Apache]
 
 - **DB** ->postgresql :5432 mysql -> 3306
+
   - [PostgreSQL]
+
+
+aggiungere cartella html con public e private
+sostituire apache con nginx
+
