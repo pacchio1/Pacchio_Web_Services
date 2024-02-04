@@ -68,3 +68,4 @@ docker cp docker-nextcloud-1:/var/www/html/data .
 usare pivpn come docker
 fixare certbot
 salvare cartella vengono salvati i file di nextcloud -> capire come fare
+configurare mysql bene
