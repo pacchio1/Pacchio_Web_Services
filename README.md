@@ -3,6 +3,30 @@
 Pacchio Web Services
 ![pws](pwsLogo.png)
 
+## Installazione
+
+git clone <https://github.com/pacchio1/Pacchio_Web_Services.git>
+
+chmod -R 770 html
+
+cd docker
+
+docker-compose up -d
+
+### per interagire con un docker
+
+docker exec -it **nome docker** /bin/bash
+
+ex. docker exec -it docker-nextcloud-1 /bin/bash
+
+### per salvare file di nextcloud X backup
+
+cd html
+
+docker cp docker-nextcloud-1:/var/www/html/data .
+
+## Servizi
+
 - **Password Database (KeepassXC):**
 
   - [Per salvare password online]
@@ -38,7 +62,7 @@ Pacchio Web Services
   - [PostgreSQL]
 
 ## ToDo
-aggiungere cartella html con public e private
-sostituire apache con nginx
-usare pivpn come docker
 
+usare pivpn come docker
+fixare certbot
+salvare cartella vengono salvati i file di nextcloud

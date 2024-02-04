@@ -6,8 +6,10 @@ services:
     restart: always
     ports:
       - '4321:80'
-    volumes:
-      - '/nextcloud:/var/www/html'
+    # volumes:
+    #   - 'nextcloud:/var/www/html/data'
+    # command: 'chmod -R 770 /var/www/html/data'
+
 
   pihole:
     image: pihole/pihole
@@ -16,20 +18,16 @@ services:
     environment:
       - TZ=Europe/Rome
       - ServerIP=localhost #ip da cui si configura il pihole
-      - WEBPASSWORD=piholedocker
-      - DNS1=8.8.8.8  # Google DNS
-      - DNS2=8.8.4.4  # Google DNS
+      - WEBPASSWORD=piholedocker #da cambiare
+      - DNS1=8.8.8.8
+      - DNS2=8.8.4.4
     dns:
       - 127.0.0.1
       - solidyellow.ddns.net
-    dns_search: # Optional, you can omit this line
+    dns_search:
       - local
     ports:
-      # - "53:53/tcp"
-      # - "53:53/udp"
-      # - "67:67/udp"
       - "5555:80"
-      # - "555:443"
     cap_add:
       - NET_ADMIN
 
@@ -42,47 +40,22 @@ services:
     environment:
       - ServerIP=localhost
       - TZ=Europe/Rome
-    volumes:
-      - '/mnt/uptimekuma:/app/db'
 
-  certbot:
-    image: 'certbot/certbot'
-    command: 'certonly --webroot --webroot-path=/var/www/html --email'
-    volumes:
-      - '/etc/letsencrypt:/etc/letsencrypt'
-    restart: always
+  # certbot:
+  #   image: 'certbot/certbot'
+  #   command: 'certonly --webroot --webroot-path=/var/www/html --email'
+  #   volumes:
+  #     - '/etc/letsencrypt:/etc/letsencrypt'
+  #   restart: always
 
-  apache2:
-    image: 'httpd:2.4'
+  nginx:
+    image: 'nginx:latest'
     restart: always
     ports:
       - '80:80'
       - '443:443'
-
-  # postgresql:
-  #   image: 'postgres:latest'
-  #   environment:
-  #     - POSTGRES_USER=myuser
-  #     - POSTGRES_PASSWORD=mypassword
-  #     - POSTGRES_DB=mydatabase
-  #   volumes:
-  #     - '/mnt/postgresql:/var/lib/postgresql/data'
-  #   ports:
-  #     - '5432:5432'
-  #   restart: always
-
-  # mysql:
-  #   image: 'mysql:latest'
-  #   restart: always
-  #   ports:
-  #     - '3306:3306'
-
-  # vpn:
-  #   image: 'debian:latest'
-  #   command: 'tail -f /dev/null'
-  #   ports:
-  #     - '11948:11948'
-  #   restart: always
+    volumes:
+      - '../html:/usr/share/nginx/html'
 
 volumes:
   nextcloud:

@@ -1,2 +1,5 @@
 
 .vscode/settings.json
+
+html/nextcloud/*
+!html/nextcloud/.keep
