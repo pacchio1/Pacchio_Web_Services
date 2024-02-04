@@ -17,7 +17,7 @@ services:
     restart: always
     environment:
       - TZ=Europe/Rome
-      # - ServerIP=localhost #ip da cui si configura il pihole
+      - ServerIP=192.168.1.50 #ip da cui si configura il pihole
       - WEBPASSWORD=piholedocker #da cambiare
       - DNS1=8.8.8.8
       - DNS2=8.8.4.4
@@ -36,12 +36,6 @@ services:
       - ServerIP=localhost
       - TZ=Europe/Rome
 
-  # certbot:
-  #   image: 'certbot/certbot'
-  #   command: 'certonly --webroot --webroot-path=/var/www/html --email'
-  #   volumes:
-  #     - '/etc/letsencrypt:/etc/letsencrypt'
-  #   restart: always
 
   apache2:
     image: 'httpd:latest'
