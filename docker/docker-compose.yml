@@ -53,16 +53,6 @@ services:
       - MYSQL_PASSWORD=mysqldockerpassword
       - MYSQL_ROOT_PASSWORD=mysqldockerrootpassword
 
-  phpmyadmin:
-    image: 'phpmyadmin/phpmyadmin:latest'
-    restart: always
-    ports:
-      - '8080:80'
-    environment:
-      - PMA_HOST=mysql
-      - PMA_USER=mysqldocker
-      - PMA_PASSWORD=mysqldockerpassword
-
 volumes:
   nextcloud:
   pihole:
