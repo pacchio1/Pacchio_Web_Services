@@ -69,3 +69,4 @@ usare pivpn come docker
 fixare certbot
 salvare cartella vengono salvati i file di nextcloud -> capire come fare
 configurare mysql bene
+ssh in remoto solo tramite public key
