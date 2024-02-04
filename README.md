@@ -13,7 +13,7 @@ chmod -R 770 html
 
 cd docker
 
-docker-compose up -d
+sudo docker-compose up -d
 
 ### per interagire con un docker
 
