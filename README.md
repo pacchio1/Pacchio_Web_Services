@@ -13,7 +13,7 @@ chmod -R 770 html
 
 cd docker
 
-docker-compose up -d
+sudo docker-compose up -d
 
 ### per interagire con un docker
 
@@ -68,3 +68,5 @@ docker cp docker-nextcloud-1:/var/www/html/data .
 usare pivpn come docker
 fixare certbot
 salvare cartella vengono salvati i file di nextcloud -> capire come fare
+configurare mysql bene
+ssh in remoto solo tramite public key
