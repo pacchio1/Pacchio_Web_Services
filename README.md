@@ -63,6 +63,17 @@ docker cp docker-nextcloud-1:/var/www/html/data .
 
   - [PostgreSQL]
 
+## Per espore nextcloud
+
+sudo docker exec -it docker_nextcloud_1 /bin/bash
+
+cat > config/config.php
+
+" array (
+0 => '192.168.1.69:4321',
+1 => 'solidyellow.ddns.net', // Add your domain here
+),"...
+
 ## ToDo
 
 usare pivpn come docker
