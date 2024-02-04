@@ -17,15 +17,10 @@ services:
     restart: always
     environment:
       - TZ=Europe/Rome
-      - ServerIP=localhost #ip da cui si configura il pihole
+      # - ServerIP=localhost #ip da cui si configura il pihole
       - WEBPASSWORD=piholedocker #da cambiare
       - DNS1=8.8.8.8
       - DNS2=8.8.4.4
-    dns:
-      - 127.0.0.1
-      - solidyellow.ddns.net
-    dns_search:
-      - local
     ports:
       - "5555:80"
     cap_add:
@@ -48,14 +43,22 @@ services:
   #     - '/etc/letsencrypt:/etc/letsencrypt'
   #   restart: always
 
-  nginx:
-    image: 'nginx:latest'
-    restart: always
+  apache2:
+    image: 'httpd:latest'
     ports:
       - '80:80'
-      - '443:443'
-    volumes:
-      - '../html:/usr/share/nginx/html'
+    restart: always
+
+  mysql:
+    image: 'mysql:latest'
+    restart: always
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_USER=mysqldocker
+      - MYSQL_PASSWORD=mysqldockerpassword
+      - MYSQL_ROOT_PASSWORD=mysqldockerrootpassword
+
 
 volumes:
   nextcloud:
@@ -63,6 +66,4 @@ volumes:
   uptimekuma:
   certbot:
   apache2:
-  # postgresql:
-  # mysql:
-  # vpn:
+

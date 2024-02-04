@@ -57,7 +57,7 @@ docker cp docker-nextcloud-1:/var/www/html/data .
 
 - **Web Server:** -> 80
 
-  - [Nginx]
+  - [Apache2]
 
 - **DB** ->postgresql :5432 mysql -> 3306
 
