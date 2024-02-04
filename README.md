@@ -47,7 +47,7 @@ docker cp docker-nextcloud-1:/var/www/html/data .
 <!-- - **pfSense:**
   - [firewall e router open-source] -->
 
-- **VPN:**
+- **VPN:** -> 1194
 
   - [creazione di una vpn con openvpn e pivpn]
 
@@ -59,7 +59,7 @@ docker cp docker-nextcloud-1:/var/www/html/data .
 
   - [Apache2]
 
-- **DB** ->postgresql :5432 mysql -> 3306
+- **DB** ->postgresql :5432 mysql -> 3306 phpmyadmin
 
   - [PostgreSQL]
 
