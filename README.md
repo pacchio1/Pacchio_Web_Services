@@ -7,6 +7,8 @@ Pacchio Web Services
 
 git clone <https://github.com/pacchio1/Pacchio_Web_Services.git>
 
+cd Pacchio_Web_Services
+
 chmod -R 770 html
 
 cd docker
@@ -55,7 +57,7 @@ docker cp docker-nextcloud-1:/var/www/html/data .
 
 - **Web Server:** -> 80
 
-  - [Apache]
+  - [Nginx]
 
 - **DB** ->postgresql :5432 mysql -> 3306
 
@@ -65,4 +67,4 @@ docker cp docker-nextcloud-1:/var/www/html/data .
 
 usare pivpn come docker
 fixare certbot
-salvare cartella vengono salvati i file di nextcloud
+salvare cartella vengono salvati i file di nextcloud -> capire come fare
