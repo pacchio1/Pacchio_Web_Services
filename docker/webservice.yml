@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  apache2:
+    image: 'httpd:latest'
+    ports:
+      - '80:80'
+    restart: always
+
+  mysql:
+    image: 'mysql:latest'
+    restart: always
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_USER=mysqldocker
+      - MYSQL_PASSWORD=mysqldockerpassword
+      - MYSQL_ROOT_PASSWORD=mysqldockerrootpassword
+
+  # postgresql:
+  #   image: 'postgres:latest'
+  #   environment:
+  #     - POSTGRES_USER=myuser
+  #     - POSTGRES_PASSWORD=mypassword
+  #     - POSTGRES_DB=mydatabase
+  #   volumes:
+  #     - '/mnt/postgresql:/var/lib/postgresql/data'
+  #   ports:
+  #     - '5432:5432'

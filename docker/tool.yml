@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+
+  uptimekuma:
+    container_name: tool-uptimekuma
+    image: elestio/uptime-kuma:latest
+    restart: always
+    ports:
+      - '3001:3001'
+    environment:
+      - ServerIP=localhost
+      - TZ=Europe/Rome

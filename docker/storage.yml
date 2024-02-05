@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  nextcloud:
+    container_name: storage-nextcloud
+    image: 'nextcloud:latest'
+    restart: always
+    ports:
+      - '4321:80'
+    depends_on:
+      - storage-db
+
+  vaultwarden:
+    container_name: storage-vaultwarden
+    image: vaultwarden/server:latest
+    restart: always
+    volumes:
+      - ./vw-data:/data
+    environment:
+      - ROCKET_PORT=60
+      - ROCKET_WORKERS=10
+    ports:
+      - "60:60"
+
+  db:
+    container_name: storage-db
+    image: mariadb
+    volumes:
+      - ./nextcloud/db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=SUPERSECRETPASSWORD
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=nextcloud
+    networks:
+      - proxy-tier
+    restart: always
+
+volumes:
+  nextcloud:
+

@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+  helloworld:
+    container_name: helloworld
+    image: crccheck/hello-world
+    expose:
+        - 8000
+
+  nginx:
+    container_name: nginx
+    restart: unless-stopped
+    image: nginx
+    ports:
+        - 80:80
+        - 443:443
+    volumes:
+        - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    command: certonly --webroot -w /var/www/certbot --force-renewal --email marcopac.363.d@gmail.com -d solidyellow.ddns.net --agree-tos
+
+  # openvpnserver:
+  #   container_name: network-openvpn
+  #   image: kylemanna/openvpn
+  #   cap_add:
+  #     - NET_ADMIN
+  #   restart: always
+  #   ports:
+  #     - "1194:1194/udp"
+  #   volumes:
+  #     - ./openvpn:/etc/openvpn
+  #   environment:
+  #     - EASYRSA_REQ_COUNTRY=IT
+  #     - EASYRSA_REQ_PROVINCE=RM
+  #     - EASYRSA_REQ_CITY=RM
+  #     - EASYRSA_REQ_ORG=solidyellow
+
+
+  uptimekuma:
+    container_name: tool-uptimekuma
+    image: elestio/uptime-kuma:latest
+    restart: always
+    ports:
+      - '3001:3001'
+    environment:
+      - ServerIP=localhost
+      - TZ=Europe/Rome
