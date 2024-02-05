@@ -5,3 +5,13 @@ services:
     image: portainer/portainer-ce
     ports:
       - 9443:9443
+  vaultwarden:
+    image: vaultwarden/server:latest
+    restart: always
+    volumes:
+      - ./vw-data:/data
+    environment:
+      - ROCKET_PORT=60
+      - ROCKET_WORKERS=10
+    ports:
+      - "60:60"
