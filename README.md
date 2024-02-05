@@ -65,7 +65,7 @@ docker cp docker-nextcloud-1:/var/www/html/data .
 
 ### Portainer
 
-** Eseguire seguenti comandi **
+**Eseguire seguenti comandi**
 
 docker volume create portainer_data
 
