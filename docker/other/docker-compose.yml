@@ -15,3 +15,9 @@ services:
       - ROCKET_WORKERS=10
     ports:
       - "60:60"
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    command: certonly --webroot  --webroot-path=/var/www/certbot --email marcopac.363.d@gmail.com -d solidyellow.ddns.net
