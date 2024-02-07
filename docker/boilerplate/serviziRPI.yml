@@ -1,0 +1,61 @@
+version: '3'
+
+services:
+  nextcloud:
+    image: 'nextcloud:latest'
+    restart: always
+    ports:
+      - '4321:80'
+    # volumes:
+    #   - 'nextcloud:/var/www/html/data'
+    # command: 'chmod -R 770 /var/www/html/data'
+
+
+  pihole:
+    image: pihole/pihole
+    container_name: pihole
+    restart: always
+    environment:
+      - TZ=Europe/Rome
+      - ServerIP=192.168.1.50 #ip da cui si configura il pihole
+      - WEBPASSWORD=piholedocker #da cambiare
+      - DNS1=8.8.8.8
+      - DNS2=8.8.4.4
+    ports:
+      - "5555:80"
+    cap_add:
+      - NET_ADMIN
+
+
+  uptimekuma:
+    image: elestio/uptime-kuma:latest
+    restart: always
+    ports:
+      - '3001:3001'
+    environment:
+      - ServerIP=localhost
+      - TZ=Europe/Rome
+
+
+  apache2:
+    image: 'httpd:latest'
+    ports:
+      - '80:80'
+    restart: always
+
+  mysql:
+    image: 'mysql:latest'
+    restart: always
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_USER=mysqldocker
+      - MYSQL_PASSWORD=mysqldockerpassword
+      - MYSQL_ROOT_PASSWORD=mysqldockerrootpassword
+
+volumes:
+  nextcloud:
+  pihole:
+  uptimekuma:
+  certbot:
+  apache2:

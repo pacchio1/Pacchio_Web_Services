@@ -1,15 +1,14 @@
-version: '3'
+version: "3"
 
 services:
   nextcloud:
-    image: 'nextcloud:latest'
+    image: "nextcloud:latest"
     restart: always
     ports:
-      - '4321:80'
+      - "4321:80"
     # volumes:
     #   - 'nextcloud:/var/www/html/data'
     # command: 'chmod -R 770 /var/www/html/data'
-
 
   pihole:
     image: pihole/pihole
@@ -26,32 +25,66 @@ services:
     cap_add:
       - NET_ADMIN
 
-
   uptimekuma:
     image: elestio/uptime-kuma:latest
     restart: always
     ports:
-      - '3001:3001'
+      - "3001:3001"
     environment:
       - ServerIP=localhost
       - TZ=Europe/Rome
 
-
-  apache2:
-    image: 'httpd:latest'
-    ports:
-      - '80:80'
-    restart: always
-
   mysql:
-    image: 'mysql:latest'
+    image: "mysql:latest"
     restart: always
     ports:
-      - '3306:3306'
+      - "3306:3306"
     environment:
       - MYSQL_USER=mysqldocker
       - MYSQL_PASSWORD=mysqldockerpassword
       - MYSQL_ROOT_PASSWORD=mysqldockerrootpassword
+
+  apache2:
+    container_name: apache2
+    image: "httpd:latest"
+    ports:
+      - 9001:9001
+    restart: always
+
+  nginx:
+    container_name: nginx
+    restart: unless-stopped
+    image: nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+
+  vaultwarden:
+    container_name: storage-vaultwarden
+    image: vaultwarden/server:latest
+    restart: always
+    volumes:
+      - ./vw-data:/data
+    environment:
+      - ROCKET_PORT=60
+      - ROCKET_WORKERS=10
+    ports:
+      - "60:60"
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    command: certonly --webroot -w /var/www/certbot --force-renewal --email marcopac.363.d@gmail.com -d solidyellow.ddns.net --agree-tos
+
+networks:
+  default:
+    driver: bridge
 
 volumes:
   nextcloud:
