@@ -29,21 +29,3 @@ services:
       - ./certbot/www:/var/www/certbot
     command: certonly --webroot -w /var/www/certbot --force-renewal --email marcopac.363.d@gmail.com -d solidyellow.ddns.net --agree-tos
 
-
-
-
-  # pivpn:
-  #   image: pivpn/pivpn
-  #   container_name: pivpn
-  #   restart: unless-stopped
-  #   cap_add:
-  #     - NET_ADMIN
-  #   ports:
-  #     - "1194:1194/udp"
-  #   environment:
-  #     - SERVER_OVPN_DEFROUTE=false # Set to true if you want to route all client traffic through VPN
-  #   volumes:
-  #     - ./ovpndata:/home/pivpn/ovpndata
-  #   stdin_open: true
-  #   tty: true
-
