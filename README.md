@@ -84,11 +84,17 @@ cat > config/config.php
 
 ## ToDo
 
-usare pivpn come docker
-fixare certbot
-ssh in remoto solo tramite public key
-espore nextcloud
+usare pivpn come docker,
+fixare certbot,
+ssh in remoto solo tramite public key,
 
 ## WishList
 
 salvare cartella vengono salvati i file di nextcloud -> capire come fare
+
+## Docker Da Guardare
+
+ljishen/pivpn
+weejewel/pivpn-web
+
+
