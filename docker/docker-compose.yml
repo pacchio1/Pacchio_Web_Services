@@ -3,7 +3,7 @@ version: "3"
 services:
   nextcloud:
     image: "nextcloud:latest"
-    restart: unless-stopped
+    restart: always
     ports:
       - "4321:80"
     # volumes:
@@ -11,29 +11,23 @@ services:
     # command: 'chmod -R 770 /var/www/html/data'
 
   pihole:
+    image: pihole/pihole
     container_name: pihole
-    image: pihole/pihole:latest
-    networks:
-      pihole_network:
-        ipv4_address: "192.168.1.69" #update, assign open ip manually
-    ports:
-      - "53:53/tcp"
-      - "53:53/udp"
-      - "67:67/udp" # Only required if you are using Pi-hole as your DHCP server
-      - "80:80/tcp"
+    restart: always
     environment:
-      TZ: "America/New_York" # update according to your timezone
-      WEBPASSWORD: "choose secured password" #update password
-    volumes:
-      - "/home/username/pihole/etc-pihole:/etc/pihole" #update
-      - "/home/username/pihole/etc-dnsmasq.d:/etc/dnsmasq.d" #update
+      - TZ=Europe/Rome
+      - ServerIP=192.168.1.69 #ip da cui si configura il pihole
+      - WEBPASSWORD=piholedocker #da cambiare
+      - DNS1=8.8.8.8
+      - DNS2=8.8.4.4
+    ports:
+      - "5555:80"
     cap_add:
       - NET_ADMIN
-    restart: unless-stopped
 
   uptimekuma:
     image: elestio/uptime-kuma:latest
-    restart: unless-stopped
+    restart: always
     ports:
       - "3001:3001"
     environment:
@@ -44,11 +38,11 @@ services:
     image: "httpd:latest"
     ports:
       - "80:80"
-    restart: unless-stopped
+    restart: always
 
   mysql:
     image: "mysql:latest"
-    restart: unless-stopped
+    restart: always
     ports:
       - "3306:3306"
     environment:
@@ -62,13 +56,3 @@ volumes:
   uptimekuma:
   certbot:
   apache2:
-
-networks:
-  pihole_network:
-    driver: macvlan
-    driver_opts:
-      parent: eth0
-    ipam:
-      config:
-        - subnet: 192.168.1.0/24 #update if needed
-          gateway: 192.168.1.1 #update if needed
