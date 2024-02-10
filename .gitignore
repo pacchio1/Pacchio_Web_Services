@@ -3,3 +3,6 @@
 
 html/nextcloud/*
 !html/nextcloud/.keep
+
+docker/certbot
+docker/vw-data

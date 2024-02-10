@@ -6,9 +6,6 @@ services:
     restart: always
     ports:
       - "4321:80"
-    # volumes:
-    #   - 'nextcloud:/var/www/html/data'
-    # command: 'chmod -R 770 /var/www/html/data'
 
   uptimekuma:
     image: elestio/uptime-kuma:latest
@@ -47,6 +44,8 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
+    networks:
+      - pihole_network
 
   vaultwarden:
     container_name: storage-vaultwarden
@@ -77,10 +76,10 @@ services:
       - "53:53/tcp"
       - "53:53/udp"
       - "67:67/udp" # Only required if you are using Pi-hole as your DHCP server
-      - "80:80/tcp"
+      - "5555:80"
     environment:
-      TZ: "America/New_York" # update according to your timezone
-      WEBPASSWORD: "choose secured password" #update password
+      TZ: "Europe/Rome" # update according to your timezone
+      WEBPASSWORD: "dockerpiholepassword" #update password
     volumes:
       - "/home/username/pihole/etc-pihole:/etc/pihole" #update
       - "/home/username/pihole/etc-dnsmasq.d:/etc/dnsmasq.d" #update
