@@ -20,7 +20,7 @@ services:
       - "53:53/tcp"
       - "53:53/udp"
       - "67:67/udp" # Only required if you are using Pi-hole as your DHCP server
-      - "5555:80/tcp"
+      - "80:80/tcp"
     environment:
       TZ: "America/New_York" # update according to your timezone
       WEBPASSWORD: "choose secured password" #update password
