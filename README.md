@@ -85,9 +85,16 @@ cat > config/config.php
 ## ToDo
 
 usare pivpn come docker
+
 fixare certbot
+
 ssh in remoto solo tramite public key
-espore nextcloud
+
+revers nginx proxy
+
+dashy
+
+swing music
 
 ## WishList
 
